@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #87CEEB, #f0f8ff);
+    color: #333;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #0077b6;
+    animation: fadeIn 2s;
+  }
+  
+  select {
+    padding: 10px;
+    font-size: 1.2em;
+    border: 2px solid #0077b6;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  
+  .loading,
+  .error-message {
+    display: none;
+    font-size: 1.2em;
+    color: red;
+    margin: 20px 0;
+  }
+  
+  .weather-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .weather-card {
+    width: 200px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, background 0.3s;
+  }
+  
+  .weather-card:hover {
+    transform: scale(1.1);
+    background: #e0f7fa;
+  }
+  
+  .weather-icon {
+    font-size: 3em;
+    margin: 10px 0;
+    animation: bounce 2s infinite;
+  }
+  
+  .weather-details {
+    font-size: 1.1em;
+    margin-top: 10px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
