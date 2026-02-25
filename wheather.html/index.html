@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Analytics Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Main Container -->
+  <div class="dashboard-container">
+    <!-- Header Section -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <h1 class="dashboard-title">🌤️ Weather Analytics Dashboard</h1>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle Theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Search Section -->
+      <section class="search-section">
+        <div class="search-container">
+          <input 
+            type="text" 
+            id="city-input" 
+            class="city-input" 
+            placeholder="Enter city name... (e.g., Berlin, New York)"
+            aria-label="City input"
+            aria-describedby="suggested-cities"
+          >
+          <button id="search-btn" class="search-btn" aria-label="Search weather">Search</button>
+          <button id="clear-btn" class="clear-btn" aria-label="Clear search" title="Clear search">✕</button>
+        </div>
+        
+        <div id="suggested-cities" class="suggested-cities">
+          <p class="suggested-label">Suggested cities:</p>
+          <div class="city-suggestions">
+            <button class="suggestion-btn" data-city="Berlin">Berlin</button>
+            <button class="suggestion-btn" data-city="Delhi">Delhi</button>
+            <button class="suggestion-btn" data-city="Mumbai">Mumbai</button>
+            <button class="suggestion-btn" data-city="New York">New York</button>
+            <button class="suggestion-btn" data-city="Paris">Paris</button>
+            <button class="suggestion-btn" data-city="Tokyo">Tokyo</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Loading Spinner -->
+      <div id="loading" class="loading-container" hidden>
+        <div class="spinner"></div>
+        <p class="loading-text">Fetching weather data...</p>
+      </div>
+
+      <!-- Error Message Section -->
+      <section id="error-section" class="error-section" hidden>
+        <div class="error-content">
+          <h2 class="error-title">⚠️ Error</h2>
+          <p id="error-message" class="error-message"></p>
+          <button id="error-close-btn" class="error-close-btn" aria-label="Close error">×</button>
+        </div>
+      </section>
+
+      <!-- Weather Alerts Section -->
+      <section id="alerts-section" class="alerts-section" hidden>
+        <div id="alerts-container" class="alerts-container">
+          <!-- Weather alerts will be dynamically added here -->
+        </div>
+      </section>
+
+      <!-- Current City Info -->
+      <section id="city-info-section" class="city-info-section" hidden>
+        <div class="city-header">
+          <div>
+            <h2 id="city-name" class="city-name"></h2>
+            <p id="city-location" class="city-location"></p>
+          </div>
+          <time id="data-timestamp" class="data-timestamp"></time>
+        </div>
+      </section>
+
+      <!-- Weather Cards -->
+      <section id="weather-cards-section" class="weather-cards-section" hidden>
+        <h2 class="section-title">Monthly Overview</h2>
+        <div id="weather-cards" class="weather-cards">
+          <!-- Weather cards will be dynamically added here -->
+        </div>
+      </section>
+
+      <!-- Analytics Summary Section -->
+      <section id="analytics-section" class="analytics-section" hidden>
+        <h2 class="section-title">Analytics Summary</h2>
+        <div class="analytics-grid">
+          <div class="analytics-card">
+            <h3 class="analytics-label">Avg Temperature</h3>
+            <p id="avg-temp" class="analytics-value">-</p>
+            <p class="analytics-unit">°C</p>
+          </div>
+          <div class="analytics-card">
+            <h3 class="analytics-label">Max Temperature</h3>
+            <p id="max-temp" class="analytics-value">-</p>
+            <p class="analytics-unit">°C</p>
+          </div>
+          <div class="analytics-card">
+            <h3 class="analytics-label">Min Temperature</h3>
+            <p id="min-temp" class="analytics-value">-</p>
+            <p class="analytics-unit">°C</p>
+          </div>
+          <div class="analytics-card">
+            <h3 class="analytics-label">Total Precipitation</h3>
+            <p id="total-precip" class="analytics-value">-</p>
+            <p class="analytics-unit">mm</p>
+          </div>
+          <div class="analytics-card">
+            <h3 class="analytics-label">Avg Wind Speed</h3>
+            <p id="avg-wind" class="analytics-value">-</p>
+            <p class="analytics-unit">km/h</p>
+          </div>
+          <div class="analytics-card">
+            <h3 class="analytics-label">Avg Humidity</h3>
+            <p id="avg-humidity" class="analytics-value">-</p>
+            <p class="analytics-unit">%</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section id="charts-section" class="charts-section" hidden>
+        <h2 class="section-title">Data Visualization</h2>
+        <div class="charts-container">
+          <!-- Temperature Line Chart -->
+          <article class="chart-card">
+            <h3 class="chart-title">Temperature Trend (2024)</h3>
+            <div class="chart-wrapper">
+              <canvas id="temperature-chart" role="img" aria-label="Temperature trend line chart"></canvas>
+            </div>
+          </article>
+
+          <!-- Rainfall Bar Chart -->
+          <article class="chart-card">
+            <h3 class="chart-title">Monthly Rainfall (2024)</h3>
+            <div class="chart-wrapper">
+              <canvas id="rainfall-chart" role="img" aria-label="Monthly rainfall bar chart"></canvas>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- No Data State -->
+      <section id="no-data-section" class="no-data-section">
+        <div class="no-data-content">
+          <h2 class="no-data-title">🔍 Welcome to Weather Analytics</h2>
+          <p class="no-data-text">Search for a city to view detailed weather analytics and charts for 2024</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="dashboard-footer">
+      <p>&copy; 2024 Weather Analytics Dashboard. Data powered by Google Gemini API.</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
